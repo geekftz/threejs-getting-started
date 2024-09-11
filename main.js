@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import WebGL from 'three/addons/capabilities/WebGL.js';
+
 
 
 
@@ -27,7 +29,7 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-animate();
+// animate();
 
 // setInterval(() => {
 //   console.log(1111);
@@ -36,3 +38,15 @@ animate();
 
 //   renderer.render(scene, camera);
 // }, 16);
+
+
+if (WebGL.isWebGL2Available()) {
+
+  // Initiate function or other initializations here
+  animate();
+} else {
+
+  const warning = WebGL.getWebGL2ErrorMessage();
+  document.getElementById('container').appendChild(warning);
+
+}
